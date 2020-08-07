@@ -6,11 +6,9 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
-import specs.DefaultRequest;
-import specs.DefaultResponse;
+import specs.*;
 
 public class Weather {
-
     private String uri = "http://api.openweathermap.org/data/2.5";
     private String path= "/weather";
     private String apiKey = "appid";
