@@ -1,5 +1,4 @@
 .idea/
 rest-assured.iml
 target/
-target/allure-results/
 notes.md
