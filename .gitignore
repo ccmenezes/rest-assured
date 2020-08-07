@@ -1,4 +1,4 @@
 .idea/
-rest-assured.iml
+allure-results/
+target/
 notes.md
-target
