@@ -1,11 +1,9 @@
 import io.restassured.response.ValidatableResponse;
 import net.serenitybdd.junit.runners.SerenityRunner;
-import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Steps;
 import org.eclipse.jetty.http.HttpStatus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import specs.DefaultResponse;
 import utils.Schema;
 
 import static org.junit.Assert.assertEquals;
@@ -13,8 +11,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SerenityRunner.class)
 public class TestWeather {
 
-    @Steps
-    private weather.Weather weather;
+  @Steps private weather.Weather weather;
 
     @Test
     public void testWeatherByCity() {
