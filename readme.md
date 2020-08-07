@@ -2,6 +2,12 @@
 
 This project have a propose to use the rest assured to test the an API Rest.
 
+I used the weather open API there you can create a register and access to a API key that allow you to execute a limited requests due to run your tests.
+
+https://openweathermap.org/api
+
+* Limitation
+* * Only get requests allowed.
 
 ## Considerations
 
@@ -84,5 +90,15 @@ export PATH=${ALLURE}/bin:${PATH}
 * Finally load the environment variables using the source command:
 
 ``source /etc/profile.d/allure.sh``
+
+## How to open the report locally?
+
+I used JUNIT for run the test, type the command:
+
+`mvn test`
+
+`allure serve /home/claudia/Documents/automation/rest-assured/allure-results`
+
+
 
 
