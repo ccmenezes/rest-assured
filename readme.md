@@ -97,7 +97,7 @@ I used JUNIT for run the test, type the command:
 
 `mvn test`
 
-`allure serve /home/claudia/Documents/automation/rest-assured/allure-results`
+`allure serve /home/claudia/Documents/automation/rest-assured/target/surefire-reports/`
 
 
 
