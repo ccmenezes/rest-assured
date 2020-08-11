@@ -16,10 +16,11 @@ public class DefaultRequest {
     static Filter responseLog = new ResponseLoggingFilter();
     static List<Filter> logs = asList(requestLog, responseLog);
 
-    public static RequestSpecification requestSpecification(String URI) {
+    public static RequestSpecification requestSpecification(String URI, String path) {
 
         return new RequestSpecBuilder()
                 .setBaseUri(URI)
+                .setBasePath(path)
                 .addFilters(logs)
                 .build();
     }

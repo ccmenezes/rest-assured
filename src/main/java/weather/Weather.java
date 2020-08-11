@@ -4,27 +4,33 @@ import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
-import net.serenitybdd.rest.SerenityRest;
-import net.thucydides.core.annotations.Step;
 import specs.*;
+import utils.Config;
+
+import java.io.IOException;
+
+import static io.restassured.RestAssured.given;
 
 public class Weather {
-    private String uri = "http://api.openweathermap.org/data/2.5";
-    private String path= "/weather";
-    private String apiKey = "appid";
-    private String apiValue = "678d018075e1c68247482e6ddc6b3f56";
 
-    @Step("Call current weather data for one location by city")
-    public ValidatableResponse getWeatherByCity(String city, int statusCode) {
+    private static String uri = "http://api.openweathermap.org/data/2.5";
+    private static String path= "/weather";
 
+    public static ValidatableResponse getWeatherByCity(String city, int statusCode) throws IOException {
         ContentType contentType = ContentType.JSON;
+        String apiKey =  Config.getPropValues("api_key");
+        String apiValue = Config.getPropValues("api_value");
 
-        RequestSpecification requestSpecification = DefaultRequest.requestSpecification(uri)
-                .basePath(path)
+        System.out.printf("API KEY" +apiKey + "API VALUE" + apiValue);
+
+        RequestSpecification requestSpecification = DefaultRequest.requestSpecification(uri, path)
                 .queryParam("q", city)
                 .queryParam(apiKey, apiValue);
         ResponseSpecification responseSpecification = DefaultResponse.responseSpecification(statusCode, contentType);
 
-        return SerenityRest.given(requestSpecification, responseSpecification).get().then();
+        return
+                given(requestSpecification, responseSpecification)
+                .get()
+                .then();
     }
 }

@@ -1,20 +1,18 @@
 import io.restassured.response.ValidatableResponse;
-import net.serenitybdd.junit.runners.SerenityRunner;
-import net.thucydides.core.annotations.Steps;
 import org.eclipse.jetty.http.HttpStatus;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import utils.Schema;
+import weather.Weather;
+
+
+import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(SerenityRunner.class)
 public class TestWeather {
 
-  @Steps private weather.Weather weather;
-
     @Test
-    public void testWeatherByCity() {
+    public void testWeatherByCity() throws IOException {
 
         String city = "London";
         int statusCode = HttpStatus.OK_200;
@@ -22,7 +20,7 @@ public class TestWeather {
         String responseCity;
         String schemaPath = "schemas/weather";
 
-        ValidatableResponse validatableResponse = weather.getWeatherByCity(city, statusCode);
+        ValidatableResponse validatableResponse = Weather.getWeatherByCity(city, statusCode);
 
         responseCity = validatableResponse.extract().response().jsonPath().getString(pathName);
 
@@ -32,13 +30,13 @@ public class TestWeather {
     }
 
     @Test
-    public void testWeatherByInexistentCity() {
+    public void testWeatherByInexistentCity() throws IOException {
 
         String city = "XPTO";
         int statusCode = HttpStatus.NOT_FOUND_404;
         String schemaPath = "schemas/cityNotFound";
 
-        ValidatableResponse validatableResponse = weather.getWeatherByCity(city, statusCode);
+        ValidatableResponse validatableResponse = Weather.getWeatherByCity(city, statusCode);
 
         Schema.schemaValidator(validatableResponse, schemaPath);
     }
