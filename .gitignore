@@ -1,4 +1,12 @@
+#Intellij configurations
 .idea/
+
+#Reports
 allure-results/
 target/
+
+#Project notes
 notes.md
+
+#Properties
+.properties

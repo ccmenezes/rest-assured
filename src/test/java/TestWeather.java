@@ -5,12 +5,14 @@ import utils.Schema;
 import weather.Weather;
 
 
+import java.io.IOException;
+
 import static org.junit.Assert.assertEquals;
 
 public class TestWeather {
 
     @Test
-    public void testWeatherByCity() {
+    public void testWeatherByCity() throws IOException {
 
         String city = "London";
         int statusCode = HttpStatus.OK_200;
@@ -28,7 +30,7 @@ public class TestWeather {
     }
 
     @Test
-    public void testWeatherByInexistentCity() {
+    public void testWeatherByInexistentCity() throws IOException {
 
         String city = "XPTO";
         int statusCode = HttpStatus.NOT_FOUND_404;

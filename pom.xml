@@ -20,7 +20,6 @@
         <rest.assured>3.3.0</rest.assured>
         <allure>2.13.2</allure>
         <allure.commandline>2.13.5</allure.commandline>
-        <commons.configuration>2.2</commons.configuration>
     </properties>
 
     <dependencies>
@@ -64,11 +63,6 @@
             <artifactId>rest-assured</artifactId>
             <version>3.3.0</version>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-configuration2</artifactId>
-            <version>${commons.configuration}</version>
         </dependency>
     </dependencies>
 

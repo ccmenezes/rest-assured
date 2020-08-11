@@ -1,36 +1,37 @@
 package utils;
 
-import org.apache.commons.configuration2.PropertiesConfiguration;
-import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
-import org.apache.commons.configuration2.builder.fluent.Configurations;
-import org.apache.commons.configuration2.ex.ConfigurationException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class Config {
 
-    private static final String env;
+    private static String value = "";
+    private static InputStream inputStream;
 
-    static{
+    public static String getPropValues(String property) throws IOException {
 
-        env = System.getProperty("common");
-    }
-
-    public static String getPropertyValue(String property) {
-        Configurations configs = new Configurations();
         String value = "";
+
         try {
-            // Obtain the configuration from the associated environment file
-            FileBasedConfigurationBuilder<PropertiesConfiguration> builder =
-                    configs.propertiesBuilder("env" + "properties");
-            PropertiesConfiguration config = builder.getConfiguration();
-            // Get property value
-            value = config.getString(property);
-            if (value == null || value.isEmpty()) {
-                throw new ConfigurationException("Error getting property: " + property);
+            Properties prop = new Properties();
+            String propFileName = "common.properties";
+
+            inputStream = Config.class.getClassLoader().getResourceAsStream(propFileName);
+
+            if (inputStream != null) {
+                prop.load(inputStream);
             } else {
-                return value;
+                throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
             }
-        } catch (ConfigurationException cex) {
-            System.out.println("Exception getting property value: " + cex);
+
+             value = prop.getProperty(property);
+
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+        } finally {
+            inputStream.close();
         }
         return value;
     }
