@@ -9,4 +9,4 @@ target/
 notes.md
 
 #Properties
-.properties
+src/main/resources/common.properties
