@@ -15,7 +15,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <aspectj.version>1.9.4</aspectj.version>
         <maven.surefire>3.0.0-M3</maven.surefire>
-        <junit>4.13</junit>
+        <junit>4.13.1</junit>
         <rest.schema.validator>4.2.0</rest.schema.validator>
         <rest.assured>3.3.0</rest.assured>
         <allure>2.13.2</allure>
